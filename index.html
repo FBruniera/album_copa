@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Collector 26 | Premium Dashboard</title>
+    <title>Coleciona CP | Copa 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="header">
-        <div class="container">
-            <h1 class="logo"><i class="fas fa-trophy"></i> PANINI<span>26</span></h1>
-            <button onclick="toggleContrast()" class="btn-theme"><i class="fas fa-adjust"></i></button>
+        <div class="container header-flex">
+            <h1 class="logo">🏁 Álbum 2026 - <span>Coleciona CP</span></h1>
+            <div class="header-btns">
+                <button class="btn-top btn-danger" onclick="resetarTudo()" title="Esvaziar Álbum">Esvaziar</button>
+                <button class="btn-top btn-success" onclick="preencherTudo()" title="Completar Álbum">Completar</button>
+                <button onclick="toggleContrast()" class="btn-theme"><i class="fas fa-adjust"></i></button>
+            </div>
         </div>
     </header>
 
@@ -20,53 +24,46 @@
         <section class="hero-stats">
             <div class="container">
                 <div class="main-card card">
-                    <h3>Progresso do Álbum</h3>
-                    <div class="progress-container">
-                        <div class="progress-track">
-                            <div id="progress-bar" class="progress-fill"></div>
-                        </div>
+                    <div class="progress-info">
+                        <span id="num-progresso">0 / 993</span>
                         <span id="progress-text">0%</span>
                     </div>
+                    <div class="progress-track"><div id="progress-bar" class="progress-fill"></div></div>
+                    
                     <div class="stats-grid">
-                        <div class="stat-item">
-                            <strong id="total-unicos">0</strong>
-                            <label>Únicas</label>
-                        </div>
-                        <div class="stat-item">
-                            <strong id="total-repetidas" class="gold-text">0</strong>
-                            <label>Repetidas</label>
-                        </div>
-                        <div class="stat-item">
-                            <strong id="total-geral">0</strong>
-                            <label>Total</label>
-                        </div>
+                        <div class="stat-item"><strong id="total-unicos">0</strong><label>Únicas</label></div>
+                        <div class="stat-item"><strong id="total-repetidas" class="gold-text">0</strong><label>Repetidas</label></div>
+                        <div class="stat-item"><strong id="total-geral">0</strong><label>Total Itens</label></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="management">
+        <section class="controls">
             <div class="container">
-                <div class="tabs-container">
-                    <button id="tab-selecoes" class="tab-btn active" onclick="switchTab('selecoes')">
-                        <i class="fas fa-flag"></i> Seleções
-                    </button>
-                    <button id="tab-especiais" class="tab-btn" onclick="switchTab('especiais')">
-                        <i class="fas fa-star"></i> Especiais
-                    </button>
-                </div>
-
-                <div id="view-selecoes" class="tab-view active">
-                    <div class="accordion-grid" id="container-selecoes"></div>
-                </div>
-
-                <div id="view-especiais" class="tab-view">
-                    <div class="accordion-grid" id="container-especiais"></div>
+                <div class="sort-bar card">
+                    <label><i class="fas fa-sort"></i> Organização:</label>
+                    <select id="sort-select" onchange="init()">
+                        <option value="grupos">Ordem do Álbum (Grupos)</option>
+                        <option value="alfa_pt">Alfabética (Português / Inglês)</option>
+                        <option value="alfa_en">Alfabética (Inglês / Português)</option>
+                    </select>
                 </div>
             </div>
         </section>
-    </main>
 
+        <section class="management container">
+            <div id="main-accordion"></div>
+        </section>
+
+        <footer class="container dev-info">
+            <p>Criado por <strong>Flávio Bruniera</strong></p>
+            <button class="btn-pix" onclick="toggleDonation()">Apoiar via PIX</button>
+            <div id="donation-area" class="donation-modal" style="display:none;">
+                <p>Chave PIX: <strong>43999793772</strong></p>
+            </div>
+        </footer>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
